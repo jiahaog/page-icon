@@ -1,6 +1,8 @@
 const axios = require('axios');
 const url = require('url');
 const fileType = require('file-type');
+const imageSize = require('image-size');
+
 
 function getExtension(downloadUrl) {
     return downloadUrl.match(/\.(png|jpg|ico)/)[0];
@@ -41,7 +43,15 @@ function downloadIcon(iconUrl) {
         // add `.` to ext
         fileDetails.ext = `.${fileDetails.ext}`;
 
+        var dimension;
+        try {
+            dimension = imageSize(iconData);
+        } catch (e) {
+            dimension = { width: 0, height: 0 };
+        }
+
         return Object.assign({
+        	dimension: dimension,
             source: iconUrl,
             name: getSiteDomain(iconUrl),
             data: iconData,
