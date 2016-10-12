@@ -22,7 +22,7 @@ $ npm install --save page-icon
 ```javascript
 const pageIcon = require('page-icon');
 
-const URL = 'https://www.facebook.com/';
+const siteUrl = 'https://www.facebook.com/';
 pageIcon(siteUrl)
     .then(function(icon) {
         // do things with icon object
@@ -31,7 +31,6 @@ pageIcon(siteUrl)
     .catch(error => {
         console.error(error);
     });
-});
 ```
 
 #### Example Icon Object
