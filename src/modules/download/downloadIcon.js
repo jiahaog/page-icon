@@ -20,7 +20,7 @@ function downloadIcon(iconUrl) {
                 resolve(response.data);
             })
             .catch(function(error) {
-                if (error.response.status === 404) {
+                if (error.response && error.response.status === 404) {
                     resolve();
                     return;
                 }
