@@ -1,7 +1,6 @@
 # Page Icon
 
-[![Build Status](https://travis-ci.org/nativefier/page-icon.svg?branch=master)](https://travis-ci.org/nativefier/page-icon)
-[![Code Climate](https://codeclimate.com/github/nativefier/page-icon/badges/gpa.svg)](https://codeclimate.com/github/nativefier/page-icon)
+[![Build Status](https://github.com/nativefier/page-icon/workflows/ci/badge.svg)](https://github.com/nativefier/page-icon/actions?query=workflow%3Aci)
 
 A library to find the highest resolution website logo for a given url.
 
