@@ -2,48 +2,48 @@ const axios = require('axios').default;
 const fileType = require('file-type');
 const url = require('url');
 
+/**
+ * @param {string} siteUrl 
+ */
 function getSiteDomain(siteUrl) {
   return url.parse(siteUrl).hostname;
 }
 
-function downloadIcon(iconUrl) {
-  const iconData = new Promise(function(resolve, reject) {
-    axios.get(iconUrl, {
+/**
+ * @param {string} iconUrl 
+ */
+async function downloadIcon(iconUrl) {
+  let iconResponse;
+  try {
+    iconResponse = await axios.get(iconUrl, {
       responseType: 'arraybuffer',
       //'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
-    })
-    .then(function(response) {
-      resolve(response.data);
-    })
-    .catch(function(error) {
-      if (error.response && error.response.status === 404) {
-        resolve();
-        return;
-      }
-      reject(error);
     });
-  });
-
-  return iconData.then(iconData => {
-    if (!iconData) {
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
       return null;
     }
+    throw error;
+  }
 
-    const fileDetails = fileType(iconData);
-    if (!fileDetails) {
-      return null;
-    }
+  const iconData = await iconResponse.data;
+  if (!iconData) {
+    return null;
+  }
 
-    // add `.` to ext
-    fileDetails.ext = `.${fileDetails.ext}`;
+  const fileDetails = fileType(iconData);
+  if (!fileDetails) {
+    return null;
+  }
 
-    return Object.assign({
-      source: iconUrl,
-      name: getSiteDomain(iconUrl),
-      data: iconData,
-      size: iconData.length
-    }, fileDetails);
-  });
+  return {
+    source: iconUrl,
+    name: getSiteDomain(iconUrl),
+    data: iconData,
+    size: iconData.length,
+    ext: `.${fileDetails.ext}`, // add `.` to ext
+    mime: fileDetails.mime,
+  };
 }
 
 module.exports = downloadIcon;
