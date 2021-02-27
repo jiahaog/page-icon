@@ -1,6 +1,7 @@
+const url = require('url');
+
 const axios = require('axios').default;
 const fileType = require('file-type');
-const url = require('url');
 
 /**
  * @param {string} siteUrl 

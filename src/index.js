@@ -1,9 +1,9 @@
 const url = require('url');
 
-const getPage = require('./getPage');
-const getIconLinks = require('./getIconLinks');
 const downloadIcons = require('./downloadIcons');
 const findBestIcon = require('./findBestIcon');
+const getIconLinks = require('./getIconLinks');
+const getPage = require('./getPage');
 
 function isHttps(pageUrl) {
   return url.parse(pageUrl).protocol === 'https:';
