@@ -4,6 +4,7 @@
 # Node.js
 lib
 coverage
+*.tgz
 
 # Logs
 logs
