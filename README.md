@@ -8,9 +8,7 @@ This a Javascript implementation of http://stackoverflow.com/a/22007642/5076225.
 
 ## Installation
 
-Only supported on Node.js >=v4.2 because of promise support.
-
-If support is desired for earlier versions, a global promise polyfill is required.
+Requires Node.js >= 10.
 
 ```bash
 $ npm install --save page-icon

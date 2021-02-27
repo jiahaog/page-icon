@@ -39,3 +39,7 @@ node_modules
 *.iml
 out
 gen
+
+# Test data
+test/*.ico
+test/*.png
